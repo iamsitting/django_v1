@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html>
+	<body>
+		<form id="dataform" method="post" action="/">
+			{% csrf_token %}
+			<input type="hidden" name="data"/>
+			<a href="#" onclick="document.forms[0].submit();return false;"></a>
+		</form>
+	</body>
+</html>
