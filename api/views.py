@@ -7,7 +7,7 @@ from .models import Task
 from .serializers import TaskSerializer
 import json
 import csv
-filename = '../sessionfiles/{0}_{1}_{2}-{3}.csv'
+filename = '../sessionfiles/'
 
 # Create your views here.
 @api_view(['GET', 'POST'])
@@ -18,22 +18,16 @@ def task_list(request):
         return Response(serializer.data)
     elif request.method == 'POST':
         success = True
-        #try:
-        #    success = True
-        #    dict_data = json.loads(posted_data)
-        #    #print dict_data
-        #except:
-        #    success = False
-        #    dict_data = request.data
-        #    print 'failed json->dict conversion'
         
 	print 'writing to file'
-	final_filename = filename.format('05','16','16','1')
+	final_filename = filename+request.data[0]["title"]
 	with open(final_filename, 'w') as f:
 		if success:
-			for el in request.data:
-				print el
-				line = ','.join("{0}".format(v) for (k,v) in el.items())
+			line = ','.join("{0}".format(k) for k in request.data[1].keys())
+			f.write(line+'\n')
+			for i in xrange(1, len(request.data)):
+				print request.data[i]
+				line = ','.join("{0}".format(v) for (k,v) in request.data[i].items())
 				line.encode('utf-8')
 				print line
 				#for k in el.iterkeys():
