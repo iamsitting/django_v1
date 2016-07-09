@@ -6,8 +6,8 @@ from django.http import HttpResponse
 def foo(request):
     return render(request, 'cxp_v1/index.html')
 
-def login(request):
-    return render(request, 'cxp_v1/login.html')
+def dataplot(request):
+    return render(request, 'cxp_v1/dataplot.html')
 
 @csrf_protect
 def datasync(request):
