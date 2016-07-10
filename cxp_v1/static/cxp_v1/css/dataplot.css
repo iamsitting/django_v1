@@ -1,3 +1,18 @@
 body {
 	background-color: #00cdcf;
 }
+
+.file-row {
+	background-color: #777;
+	padding: 5px;
+	text-align: center;
+	border: 1px solid black;
+	margin: 3px;
+	color: white;
+}
+
+.fill-div {
+	display: block;
+	height: 100%;
+	width: 100%;
+}

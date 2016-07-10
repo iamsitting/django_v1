@@ -4,15 +4,31 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Cycle X-Pro</title>
-		<!--link rel="stylesheet" href="{% static 'cxp_v1/css/login_reset.css' %}"-->
+
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 		<link rel="stylesheet" href="{% static 'cxp_v1/css/dataplot.css' %}">
+
 		<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+		<script src="{% static 'cxp_v1/js/dataplot.js' %}"></script>
+		
 	</head>
 
 	<body>
+		<h1> Test Page </h1>
+
+		<div id="filediv">
+			{% for file in filelist %}
+				<div onclick="makeplot('{{file}}', 0, 'speed')" class="file-row">
+					<a href="#graph1" class="fill-div">
+						{{ file }}
+					</a>
+				</div>
+			{% endfor %}
+		</div>
+
 		<div id="graph1">
 		</div>
-		<h1> Test Page </h1>	
+	
 	</body>
 </html>
 
