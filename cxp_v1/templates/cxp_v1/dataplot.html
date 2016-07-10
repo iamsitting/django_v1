@@ -14,21 +14,26 @@
 	</head>
 
 	<body>
-		<h1> Test Page </h1>
-
-		<div id="filediv">
-			{% for file in filelist %}
-				<div onclick="makeplot('{{file}}', 0, 'speed')" class="file-row">
-					<a href="#graph1" class="fill-div">
-						{{ file }}
-					</a>
-				</div>
-			{% endfor %}
-		</div>
-
-		<div id="graph1">
-		</div>
+		<div class="container-fluid">
+		<div class="row">
+		<div class="col-xs-12">
+			<h1 class="text-canter"> Test Page </h1>
 	
+			<div id="filediv">
+				{% for file in filelist %}
+					<div onclick="makeplot('{{file}}', 0, 'speed')" class="file-row">
+						<a href="#graph1" class="fill-div">
+							{{ file }}
+						</a>
+					</div>
+				{% endfor %}
+			</div>
+	
+			<div id="graph1">
+			</div>
+		</div>
+		</div>
+		</div>
 	</body>
 </html>
 

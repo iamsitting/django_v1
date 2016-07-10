@@ -18,7 +18,7 @@ def task_list(request):
     if request.method == 'GET':
 	print request.path
 	path_tail = request.path.split("/")[2]
-	final_filename = filename+path_tail
+	final_filename = '../sessionfiles/'+path_tail
         #tasks = Task.objects.all()
         #serializer = TaskSerializer(tasks, many=True)
         #return Response(serializer.data)
@@ -28,7 +28,7 @@ def task_list(request):
 	return response
     elif request.method == 'POST':
         success = True
-        
+        filename = '../sessionfiles/'
 	print 'writing to file'
 	final_filename = filename+request.data[0]["title"]
 	with open(final_filename, 'w') as f:
