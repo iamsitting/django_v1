@@ -1,12 +1,14 @@
 body {
 	background-color: #00cdcf;
 }
+.bg-theme {
+	background-color: #00cdcf;
+}
 
 .file-row {
 	background-color: #777;
 	padding: 5px;
 	text-align: center;
-	border: 1px solid black;
 	margin: 3px;
 	color: white;
 }
@@ -14,5 +16,10 @@ body {
 .fill-div {
 	display: block;
 	height: 100%;
+	width: 100%;
+}
+
+#graph1 {
+	display:block;
 	width: 100%;
 }

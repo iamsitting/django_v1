@@ -5,34 +5,86 @@
 		<meta charset="UTF-8">
 		<title>Cycle X-Pro</title>
 
-		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-		<link rel="stylesheet" href="{% static 'cxp_v1/css/dataplot.css' %}">
+		 <!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+		<!-- Latest compiled JavaScript -->
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+		<!--link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"-->
+		<!--link rel="stylesheet" href="{% static 'cxp_v1/css/dataplot.css' %}"-->
+
+		<link rel="stylesheet" type="text/css" href="{% static 'cxp_v1/css/keen-dashboards.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'cxp_v1/css/dataplot.css' %}">
 
 		<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 		<script src="{% static 'cxp_v1/js/dataplot.js' %}"></script>
 		
 	</head>
 
-	<body>
-		<div class="container-fluid">
-		<div class="row">
-		<div class="col-xs-12">
-			<h1 class="text-canter"> Test Page </h1>
-	
-			<div id="filediv">
-				{% for file in filelist %}
-					<div onclick="makeplot('{{file}}', 0, 'speed')" class="file-row">
-						<a href="#graph1" class="fill-div">
-							{{ file }}
-						</a>
+	<body class="application">
+		<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="sr-only">Toggle Navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="../">
+						<span class="glyphicon glyhpicon-chevron-left"></span>
+					</a>
+					<a class="navbar-brand" href="./"> X Dash </a>
+				</div>
+				<div class="navbar-collapse collapse">
+					<ul class=" nav navbar-nav navbar-left">
+						<li><a href="#">Button 1</a></li>
+						
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu 1
+								<span class="caret">
+								</span>
+							</a>
+							<ul class="dropdown-menu">
+								<li><a href="#">Sub 1</a></li>
+								<li><a href="#">Sub 2</a></li>
+							</ul>
+						</li>
+						
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Past Sessions
+								<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu">
+								{% for file in filelist %}
+									<li onclick="makeplot('{{file}}', 0, 'met2')">
+									<a href="#graph1">{{file}}</a>
+									</li>
+								{% endfor %}
+							</ul>
+						</li>
+					</ul>
+			</div>
+		</div>
+		<div class="container-fluid bg-theme">
+
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="chart-wrapper">
+						<div class="chart-title">
+							Time Series Graph 1
+							<div id="graph1"></div>
+							<div class="chart-notes">
+							This is plotting Met2 vs Time Samples
+							</div>
+						</div>
 					</div>
-				{% endfor %}
+				</div>
 			</div>
-	
-			<div id="graph1">
-			</div>
-		</div>
-		</div>
 		</div>
 	</body>
 </html>

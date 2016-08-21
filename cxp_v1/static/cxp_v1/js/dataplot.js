@@ -23,13 +23,13 @@ function processData(allRows, key1, key2) {
 };
 
 function makePlotly(x,y) {
-	var plotDiv = document.getElementById("plot");
+	var plotDiv = document.getElementById("graph1");
 	var traces = [{
 		x: x,
 		y: y
 	}];
 	
-	Plotly.newPlot('graph1', traces, {
+	Plotly.newPlot(plotDiv, traces, {
 		title: 'Plotting local file'
 	});
 };
