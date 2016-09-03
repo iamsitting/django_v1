@@ -20,8 +20,8 @@
 		<link rel="stylesheet" type="text/css" href="{% static 'cxp_v1/css/keen-dashboards.css' %}">
 		<link rel="stylesheet" type="text/css" href="{% static 'cxp_v1/css/dataplot.css' %}">
 
-		<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-		<script src="{% static 'cxp_v1/js/dataplot.js' %}"></script>
+		<script src="{% static 'cxp_v1/js/Chart.min.js' %}"></script>		
+		<script type="text/javascript" src="{% static 'cxp_v1/js/dataplot.js' %}"></script>
 		
 	</head>
 
@@ -61,8 +61,10 @@
 							</a>
 							<ul class="dropdown-menu">
 								{% for file in filelist %}
-									<li onclick="makeplot('{{file}}', 0, 'met2')">
-									<a href="#graph1">{{file}}</a>
+									<!--li onclick="makeplot('{{file}}', 0, 'met2')"-->
+									<!--li onclick="makechart('{{file}}', 'met2')"-->
+									<li>
+									<a href="javascript:callGetChart('{{file}}', 'met2')">{{file}}</a>
 									</li>
 								{% endfor %}
 							</ul>
@@ -85,7 +87,64 @@
 					</div>
 				</div>
 			</div>
+			<p id="debug"></p>
+			<div class="row">
+				<div class="col-sm-12">
+					 <canvas id="myChart"></canvas>
+				</div>
+			</div> 
 		</div>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+		<script type="text/javascript" src="{% static 'cxp_v1/js/Chart.min.js' %}"></script>
+		<script type="text/javascript">
+			function callGetChart(arg0, arg1) {
+				getChart(arg0, arg1);
+			};
+		</script>
+			<script type="text/javascript"> 
+				function getchart(j_data) {
+					var data_var = {
+						labels:j_data['stamps'],
+						datasets: [
+							{
+								label: "Resistance",
+								fill:false,
+								pointBackgroundColor: "#fff",
+								data: j_data['csv_data'],
+							}
+						]
+					}
+
+					var ctx = $("#myChart").get(0).getContext("2d");
+						new Chart(ctx, {
+							type: "line",
+							data: data_var
+						});
+	
+				}
+                       </script>
+		       <script type="text/javascript"> 
+				function makechart(fname, label) {
+					$.ajax({
+						type:"GET",
+						url: "http://cxp.sytes.net/dataplot",
+						dataType: "json",
+						async: true,
+						data: { filename: fname,
+						 	metric: label,	
+						},
+						success: function(data) {
+							getchart(data);
+							},
+						error: function(){
+							alert('file does not exist');
+						},
+
+						
+					});
+					//$.get("dataplot/", {filename:fname, metric:label});
+				}
+			</script>
 	</body>
 </html>
 

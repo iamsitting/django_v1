@@ -1,35 +1,38 @@
-function makeplot(filepath, key1, key2) {
-	console.log('../api/'.concat(filepath));
-	Plotly.d3.csv('../api/'.concat(filepath), function(data) {
-		processData(data, key1, key2);
+function getChart(fname, label) {
+	$.ajax({
+		type: "GET",
+		url: "http://cxp.sytes.net/dataplot",
+		dataType: "json",
+		async: true,
+		data: {
+			filename:fname,
+			metric: label,
+		},
+		success: function(data) {
+			makeChart(data);
+		},
+		error: function() {
+			alert('File does not exist');
+		},
 	});
-};
+}
 
-function processData(allRows, key1, key2) {
-	console.log(allRows);
-	var x = [], y = [];
-	
-	for(var i = 0; i < allRows.length; i++) {
-		row = allRows[i];
-		if(key1 === 0){
-			x.push(i+1);
-		} else {
-			x.push(row[key1]);
+function makeChart(json_data) {
+	var data_var = {
+		labels:json_data['stamps'],
+		datasets: [
+		{
+			label: "Resistance",
+			fill: false,
+			pointBackgroundColor: "#fff",
+			data: json_data['csv_data'],
 		}
-		y.push(row[key2]);
+		]
 	}
-
-	makePlotly(x,y);
-};
-
-function makePlotly(x,y) {
-	var plotDiv = document.getElementById("graph1");
-	var traces = [{
-		x: x,
-		y: y
-	}];
-	
-	Plotly.newPlot(plotDiv, traces, {
-		title: 'Plotting local file'
+	var ctx = $("#myChart").get(0).getContext("2d");
+	//var ctx = document.getElementById("myChart").get(0).getContext("2d");
+	new Chart(ctx, {
+		type: "line",
+	    	data: data_var,
 	});
-};
+}

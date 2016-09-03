@@ -17,6 +17,7 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from cxp_v1 import views
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
     #point root urls to app urls
@@ -25,3 +26,5 @@ urlpatterns = [
     url(r'^api/', include('api.urls')),
     
 ]
+
+urlpatterns += staticfiles_urlpatterns()
