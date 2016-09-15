@@ -1,0 +1,6 @@
+# compiled
+*.py[cod]
+*.$py.class
+
+#secrets
+secrets.py
