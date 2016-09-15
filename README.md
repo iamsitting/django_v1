@@ -4,13 +4,29 @@ This project contains the django server for the Cycle X-Pro project. For install
 
 ## Log
 
-# version
+### Version
 
 3.0.0
 
-# Most recent changes
+### Most recent changes
 
 Beginning from version 3.0.0 the plotting API is no longer plot.ly, it is now Chartjs
+
+## Code Design
+
+Code Design details coming soon...
+
+### django_v1
+
+Contains server settings and top-level urls
+
+### cxp_v1
+
+Contains code for the home and plotting  page
+
+### api
+
+Contains code for the HTTP Request handling 
 
 ## License
 
