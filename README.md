@@ -6,9 +6,11 @@ This project contains the django server for the Cycle X-Pro project. For install
 
 ### Version
 
-3.0.0
+3.0.1
 
 ### Most recent changes
+
+3.0.1 - bugfix: CSV header written twice to file
 
 Beginning from version 3.0.0 the plotting API is no longer plot.ly, it is now Chartjs
 

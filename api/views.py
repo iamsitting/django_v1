@@ -34,7 +34,7 @@ def task_list(request):
 	with open(final_filename, 'w') as f:
 		if success:
 			line = ','.join("{0}".format(k) for k in request.data[1].keys())
-			f.write(line+'\n')
+			#f.write(line+'\n')
 			for i in xrange(1, len(request.data)):
 				print request.data[i]
 				line = ','.join("{0}".format(v) for (k,v) in request.data[i].items())
