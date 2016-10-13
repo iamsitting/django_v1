@@ -74,10 +74,39 @@
 					</ul>
 			</div>
 		</div>
-		<div class="container-fluid bg-theme">
-			<h2>Chart.js Responsive Line Chart Demo</h2>
-			<div>
-				<canvas id="myChart"></canvas>
+		<!-- End of Navbar -->
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="chart-wrapper">
+						<div class="chart-title">
+							Sample Plot
+						</div>
+						<div class="chart-stage">
+							<div class="row">
+								<div class="col-xs-3">
+									<div class="tabbable tabs-left">
+										<ul class="nav nav-tabs">
+											<li class="active"><a href="#visitors" data-toggle="tab">Visitors</a></li>
+											<li><a href="browser" data-toggle="tab">Browser</a></li>
+										</ul>
+									</div>
+								</div>
+								<div class="col-xs-9">
+									<div class="tab-content">
+										<div class="tab-pane active" id="visitors">
+											<canvas id="myChart"></canvas>
+										</div>
+										<div class="tab-pane" id = "browser"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--div>
+					<canvas id="myChart"></canvas>
+				</div-->
 			</div>
 		</div>
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
