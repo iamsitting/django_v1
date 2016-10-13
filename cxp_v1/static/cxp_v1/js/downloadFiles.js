@@ -1,3 +1,29 @@
+function downloadAPK(){
+	$.ajax({
+		type: "GET",
+		url: "http://cxp.sytes.net/dataplot",
+		dataType: "json",
+		async: true,
+		data: {
+			downloadFile: "yes",
+			filename:"cxp-apk",
+		},
+	});
+}
+
+function downloadCSVFile(){
+	$.ajax({
+		type: "GET",
+		url: "http://cxp.sytes.net/dataplot",
+		dataType: "json",
+		async: true,
+		data: {
+			downloadFile: "yes",
+			filename: fname,
+		},
+	});	
+}
+/*
 function getChart(fname, label) {
 	$.ajax({
 		type: "GET",
@@ -5,7 +31,6 @@ function getChart(fname, label) {
 		dataType: "json",
 		async: true,
 		data: {
-			downloadFile: "no",
 			filename:fname,
 			metric: label,
 		},
@@ -36,4 +61,4 @@ function makeChart(json_data) {
 		type: "line",
 	    	data: data_var,
 	});
-}
+}*/

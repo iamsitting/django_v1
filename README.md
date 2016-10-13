@@ -6,9 +6,13 @@ This project contains the django server for the Cycle X-Pro project. For install
 
 ### Version
 
-3.0.2
+3.0.3
 
 ### Most recent changes
+
+3.0.3
+- Installed django-sendfile
+- Testing nginx serving files
 
 3.0.2
 - Installed django-twilio 

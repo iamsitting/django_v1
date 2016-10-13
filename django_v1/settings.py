@@ -26,6 +26,11 @@ TWILIO_ACCOUNT_SID = secrets.tw_sid
 TWILIO_AUTH_TOKEN = secrets.tw_token
 TWILIO_DEFAULT_CALLERID = secrets.c_id
 
+#XSendfile
+SENDFILE_ROOT = secrets.prot_files
+SENDFILE_URL = '/protected'
+SENDFILE_BACKEND = 'sendfile.backends.nginx'
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -47,6 +52,7 @@ INSTALLED_APPS = [
     'gunicorn',
     'chartjs',
     'django_twilio',
+#    'sendfile',
     
 ]
 

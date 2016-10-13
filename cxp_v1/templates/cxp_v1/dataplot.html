@@ -22,6 +22,7 @@
 
 		<script src="{% static 'cxp_v1/js/Chart.min.js' %}"></script>		
 		<script type="text/javascript" src="{% static 'cxp_v1/js/dataplot.js' %}"></script>
+		<script type="text/javascript" src="{% static 'cxp_v1/js/downloadFiles.js' %}"></script>
 		
 	</head>
 
@@ -42,7 +43,8 @@
 				</div>
 				<div class="navbar-collapse collapse">
 					<ul class=" nav navbar-nav navbar-left">
-						<li><a href="#">Button 1</a></li>
+						<li><a href="javascript:callDownloadAPK()">Download</a></li>
+						<!--li><a href="{{ download.get_absolute_url }}">Download</a></li-->
 						
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu 1
@@ -73,26 +75,10 @@
 			</div>
 		</div>
 		<div class="container-fluid bg-theme">
-
-			<div class="row">
-				<div class="col-sm-12">
-					<div class="chart-wrapper">
-						<div class="chart-title">
-							Time Series Graph 1
-							<div id="graph1"></div>
-							<div class="chart-notes">
-							This is plotting Met2 vs Time Samples
-							</div>
-						</div>
-					</div>
-				</div>
+			<h2>Chart.js Responsive Line Chart Demo</h2>
+			<div>
+				<canvas id="myChart"></canvas>
 			</div>
-			<p id="debug"></p>
-			<div class="row">
-				<div class="col-sm-12">
-					 <canvas id="myChart"></canvas>
-				</div>
-			</div> 
 		</div>
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
 		<script type="text/javascript" src="{% static 'cxp_v1/js/Chart.min.js' %}"></script>
@@ -101,50 +87,12 @@
 				getChart(arg0, arg1);
 			};
 		</script>
-			<script type="text/javascript"> 
-				function getchart(j_data) {
-					var data_var = {
-						labels:j_data['stamps'],
-						datasets: [
-							{
-								label: "Resistance",
-								fill:false,
-								pointBackgroundColor: "#fff",
-								data: j_data['csv_data'],
-							}
-						]
-					}
 
-					var ctx = $("#myChart").get(0).getContext("2d");
-						new Chart(ctx, {
-							type: "line",
-							data: data_var
-						});
-	
-				}
-                       </script>
-		       <script type="text/javascript"> 
-				function makechart(fname, label) {
-					$.ajax({
-						type:"GET",
-						url: "http://cxp.sytes.net/dataplot",
-						dataType: "json",
-						async: true,
-						data: { filename: fname,
-						 	metric: label,	
-						},
-						success: function(data) {
-							getchart(data);
-							},
-						error: function(){
-							alert('file does not exist');
-						},
-
-						
-					});
-					//$.get("dataplot/", {filename:fname, metric:label});
-				}
-			</script>
+		<script type="text/javascript">
+			function callDownloadAPK(){
+				downloadAPK();
+			};
+		</script>
 	</body>
 </html>
 
