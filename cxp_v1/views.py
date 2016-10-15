@@ -3,12 +3,14 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.views.decorators.csrf import csrf_protect
 from django.core.serializers.json import DjangoJSONEncoder
 from django.http import HttpResponse, JsonResponse, StreamingHttpResponse
+from django.utils.encoding import smart_str
 from wsgiref.util import FileWrapper
 from django.conf import settings
 from rest_framework import status
 from rest_framework.decorators import api_view
 from sendfile import sendfile
 from .models import Download
+import urllib
 import os
 import csv
 import sys
@@ -23,7 +25,7 @@ def foo(request):
 
 @api_view(['GET'])
 def dataplot(request):
-    path = "../sessionfiles/"
+    path = "./protected/"
     file_list = []
     for f in os.listdir(path):
         if 'csv' in f:
@@ -34,23 +36,27 @@ def dataplot(request):
         debug(len(request.query_params))
         if len(request.query_params) > 0:
             debug(request.query_params['downloadFile'])
+
+            #Getting CSV data to plot
             if request.query_params['downloadFile'] == "no":
                 debug('yes data')
                 filename = request.query_params['filename']
                 metric = request.query_params['metric']
                 lab = getDataFromCSV(filename, 'time')
                 dat = getDataFromCSV(filename, metric)
-                lab_json = json.dumps(lab, cls=DjangoJSONEncoder)
-                dat_json = json.dumps(dat, cls=DjangoJSONEncoder)
-                context['stamps'] = lab #lab_json
-                context['csv_data'] = dat #dat_json
+                #lab_json = json.dumps(lab, cls=DjangoJSONEncoder)
+                #dat_json = json.dumps(dataset, cls=DjangoJSONEncoder)
+                context['stamps'] = lab
+                context['raw_data'] = dat
                 debug(context)
                 return JsonResponse(context)
-                return HttpResponse(json.dumps(context, cls=DjangoJSONEncoder), content_type = "application/json")
+                #return HttpResponse(json.dumps(context, cls=DjangoJSONEncoder), content_type = "application/json")
             else: #downloadFile yes
                 debug("download file")
-                debug(request.query_params['filename'])
-                return sendFile('07-09-2016-6.csv')
+                filepath = "/home/ubuntu/Django/django_v1/protected/"+file_list[0]
+                debug(settings.SENDFILE_ROOT)
+                return sendfile(request, filepath)
+                #return sendFile('07-09-2016-6.csv')
                 #fpath = "/home/ubuntu/Django/sessionfiles/protected/07-09-2016-6.csv"
                 #debug("fpath: "+fpath)
                 #with open(fpath, 'rb') as fh:
@@ -72,7 +78,8 @@ def dataplot(request):
     #                                                    'csv_data':dat_json})
     #return render_to_response('cxp_v1/dataplot.html', context)
     #return render(request, 'cxp_v1/dataplot.html')
-
+def getfile(request):
+    return HttpResponse("Thanks")
 @api_view(['GET'])
 def download(request, download_id):
     download = get_object_or_404(Download, pk=download_id)
@@ -91,7 +98,7 @@ def datasync(request):
 #defined non-view functions here
 def getDataFromCSV(fname, label, toFloat=False):
     final_data = []
-    filename = "../sessionfiles/"+fname
+    filename = "./protected/"+fname
     with open(filename, 'rb') as f1:
         reader = csv.reader(f1)
         my_list = list(reader)
@@ -108,7 +115,7 @@ def getDataFromCSV(fname, label, toFloat=False):
     return final_data
 
 def sendFile(filename):
-    path = "/home/ubuntu/Django/sessionfiles/protected/"+filename
+    path = "/home/ubuntu/Django/django_v1/sessionfiles/protected/"+filename
     dl_name = "sample.csv"
     wrapper = FileWrapper(open(path))
     ctype, enc = mimetypes.guess_type(filename)
@@ -122,7 +129,7 @@ def sendFile(filename):
 
 #defbug functions
 def debug(obj):
-    with open('../debug/debug.txt', 'a') as f2:
+    with open('debug/debug.txt', 'a') as f2:
         old_stdout = sys.stdout
         sys.stdout = f2
         print obj

@@ -27,7 +27,7 @@ TWILIO_AUTH_TOKEN = secrets.tw_token
 TWILIO_DEFAULT_CALLERID = secrets.c_id
 
 #XSendfile
-SENDFILE_ROOT = secrets.prot_files
+SENDFILE_ROOT = os.path.join(BASE_DIR, 'protected')
 SENDFILE_URL = '/protected'
 SENDFILE_BACKEND = 'sendfile.backends.nginx'
 
@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     'gunicorn',
     'chartjs',
     'django_twilio',
-#    'sendfile',
+    'sendfile',
     
 ]
 

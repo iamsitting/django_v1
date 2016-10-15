@@ -66,7 +66,7 @@
 									<!--li onclick="makeplot('{{file}}', 0, 'met2')"-->
 									<!--li onclick="makechart('{{file}}', 'met2')"-->
 									<li>
-									<a href="javascript:callGetChart('{{file}}', 'met2')">{{file}}</a>
+									<a href="#speedTab" onclick="callGetChart('{{file}}', 'speed')">{{file}}</a>
 									</li>
 								{% endfor %}
 							</ul>
@@ -79,25 +79,31 @@
 			<div class="row">
 				<div class="col-sm-12">
 					<div class="chart-wrapper">
-						<div class="chart-title">
-							Sample Plot
+						<div id='plot-title' class="chart-title">
+							No Plot Selected
 						</div>
 						<div class="chart-stage">
 							<div class="row">
 								<div class="col-xs-3">
 									<div class="tabbable tabs-left">
 										<ul class="nav nav-tabs">
-											<li class="active"><a href="#visitors" data-toggle="tab">Visitors</a></li>
-											<li><a href="browser" data-toggle="tab">Browser</a></li>
+											<li class="active"><a href="#speedTab" onclick="updateChart('speed')" data-toggle="tab">Speed</a></li>
+											<li><a href="#distanceTab" onclick="updateChart('met1')" data-toggle="tab">Distance</a></li>
+											<li><a href="#caloriesTab" onclick="updateChart('met2')" data-toggle="tab">Calories</a></li>
 										</ul>
 									</div>
 								</div>
 								<div class="col-xs-9">
 									<div class="tab-content">
-										<div class="tab-pane active" id="visitors">
-											<canvas id="myChart"></canvas>
+										<div class="tab-pane active" id="speedTab">
+											<canvas id="speedChart"></canvas>
 										</div>
-										<div class="tab-pane" id = "browser"></div>
+										<div class="tab-pane" id ="distanceTab">
+											<canvas id="distanceChart"></canvas>
+										</div>
+										<div class="tab-pane" id="caloriesTab">
+											<canvas id="caloriesChart"></canvas>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -112,7 +118,18 @@
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
 		<script type="text/javascript" src="{% static 'cxp_v1/js/Chart.min.js' %}"></script>
 		<script type="text/javascript">
+			function updateChart(arg1){
+				var arg0 = $("#plot-title").text();
+				if(arg0 != "No Plot Selected"){
+					getChart(arg0, arg1);
+				}
+
+				
+			};
+		</script>
+		<script type="text/javascript">
 			function callGetChart(arg0, arg1) {
+				$("#plot-title").text(arg0);
 				getChart(arg0, arg1);
 			};
 		</script>

@@ -6,9 +6,15 @@ This project contains the django server for the Cycle X-Pro project. For install
 
 ### Version
 
-3.0.3
+3.1.0
 
 ### Most recent changes
+
+3.1.0
+- Updated ChartJS UI
+- Update Keen Dashboard UI
+- Still testing sendfile module
+- Twilio is still untested
 
 3.0.3
 - Installed django-sendfile
