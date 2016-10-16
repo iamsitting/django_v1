@@ -20,7 +20,7 @@
 		<link rel="stylesheet" type="text/css" href="{% static 'cxp_v1/css/keen-dashboards.css' %}">
 		<link rel="stylesheet" type="text/css" href="{% static 'cxp_v1/css/dataplot.css' %}">
 
-		<script src="{% static 'cxp_v1/js/Chart.min.js' %}"></script>		
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js"></script>
 		<script type="text/javascript" src="{% static 'cxp_v1/js/dataplot.js' %}"></script>
 		<script type="text/javascript" src="{% static 'cxp_v1/js/downloadFiles.js' %}"></script>
 		
@@ -43,7 +43,7 @@
 				</div>
 				<div class="navbar-collapse collapse">
 					<ul class=" nav navbar-nav navbar-left">
-						<li><a href="javascript:callDownloadAPK()">Download</a></li>
+						<li><a href="/download/cxp.apk">Download</a></li>
 						<!--li><a href="{{ download.get_absolute_url }}">Download</a></li-->
 						
 						<li class="dropdown">
@@ -79,14 +79,17 @@
 			<div class="row">
 				<div class="col-sm-12">
 					<div class="chart-wrapper">
-						<div id='plot-title' class="chart-title">
-							No Plot Selected
+						<div  class="chart-title">
+							<a id="plot-title" href="#">
+								No Plot Selected
+							</a>
 						</div>
 						<div class="chart-stage">
 							<div class="row">
 								<div class="col-xs-3">
 									<div class="tabbable tabs-left">
 										<ul class="nav nav-tabs">
+											<!--TODO: Chnage updateChartargs to actual metric labels -->
 											<li class="active"><a href="#speedTab" onclick="updateChart('speed')" data-toggle="tab">Speed</a></li>
 											<li><a href="#distanceTab" onclick="updateChart('met1')" data-toggle="tab">Distance</a></li>
 											<li><a href="#caloriesTab" onclick="updateChart('met2')" data-toggle="tab">Calories</a></li>
@@ -115,8 +118,8 @@
 				</div-->
 			</div>
 		</div>
-		<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
-		<script type="text/javascript" src="{% static 'cxp_v1/js/Chart.min.js' %}"></script>
+		<!--script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script-->
+		<!--script type="text/javascript" src="{% static 'cxp_v1/js/Chart.min.js' %}"></script-->
 		<script type="text/javascript">
 			function updateChart(arg1){
 				var arg0 = $("#plot-title").text();
@@ -130,6 +133,8 @@
 		<script type="text/javascript">
 			function callGetChart(arg0, arg1) {
 				$("#plot-title").text(arg0);
+				$("#plot-title").attr("href", '/download/'.concat(arg0));
+				$("#plot-title").attr("download", "download.csv");
 				getChart(arg0, arg1);
 			};
 		</script>

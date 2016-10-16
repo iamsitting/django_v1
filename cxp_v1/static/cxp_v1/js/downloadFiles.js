@@ -1,4 +1,6 @@
 function downloadAPK(){
+//	window.open("/protected/10-13-2016-0.csv");
+	
 	$.ajax({
 		type: "GET",
 		url: "http://cxp.sytes.net/dataplot",
@@ -9,6 +11,7 @@ function downloadAPK(){
 			filename:"cxp-apk",
 		},
 	});
+	
 }
 
 function downloadCSVFile(){

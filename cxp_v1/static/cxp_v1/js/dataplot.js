@@ -29,10 +29,11 @@ function makeChart(json_data, metric) {
 			data: json_data['raw_data'],
 		}
 		]
-	}
+	};
 	var canvasId = '';
 	var tabId = '';
 	switch(metric){
+		//TODO: Changes cases to actual metric labels
 		case 'speed':
 			canvasId = "#speedChart";
 			tabId = "#speedTab";

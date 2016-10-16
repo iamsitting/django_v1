@@ -7,7 +7,7 @@ from django.conf import settings
 sendfile_storage = FileSystemStorage(location=settings.SENDFILE_ROOT)
 # Create your models here.
 class Download(models.Model):
-    file = models.FileField(upload_to='download', storage=sendfile_storage)
+    my_file = models.FileField(upload_to='download', storage=sendfile_storage)
 
     @models.permalink
     def get_absolute_url(self):

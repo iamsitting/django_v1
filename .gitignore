@@ -1,6 +1,7 @@
 # compiled
 *.py[cod]
 *.$py.class
+*.apk
 
 #secrets
 secrets.py

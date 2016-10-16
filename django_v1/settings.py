@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     'gunicorn',
     'chartjs',
     'django_twilio',
-    'sendfile',
+#    'sendfile',
     
 ]
 
