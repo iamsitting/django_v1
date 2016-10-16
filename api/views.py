@@ -10,7 +10,7 @@ from .models import Task
 from .serializers import TaskSerializer
 import json
 import csv
-filename = '../sessionfiles/'
+#filename = '../sessionfiles/'
 
 # Create your views here.
 @api_view(['GET', 'POST'])
@@ -28,7 +28,7 @@ def task_list(request):
 	return response
     elif request.method == 'POST':
         success = True
-        filename = '../sessionfiles/'
+        filename = '../../protected/'
 	print 'writing to file'
 	final_filename = filename+request.data[0]["title"]
 	with open(final_filename, 'w') as f:
