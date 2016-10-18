@@ -16,16 +16,21 @@ import csv
 @api_view(['GET', 'POST'])
 def task_list(request):
     if request.method == 'GET':
-	print request.path
-	path_tail = request.path.split("/")[2]
-	final_filename = '../sessionfiles/'+path_tail
-        #tasks = Task.objects.all()
-        #serializer = TaskSerializer(tasks, many=True)
-        #return Response(serializer.data)
-	ff = open(final_filename)
-	response = HttpResponse(FileWrapper(ff), content_type='application/csv')
-	response['Content-Disposition'] = 'attachment; filename="%s"' % path_tail
-	return response
+        if len(request.query_params) > 0:
+            print request.path
+	    path_tail = request.path.split("/")[2]
+	    final_filename = '../../protected/'+path_tail
+            #tasks = Task.objects.all()
+            #serializer = TaskSerializer(tasks, many=True)
+            #return Response(serializer.data)
+	    ff = open(final_filename)
+	    response = HttpResponse(FileWrapper(ff), content_type='application/csv')
+	    response['Content-Disposition'] = 'attachment; filename="%s"' % path_tail
+	    return response
+        else:
+            tasks = Task.objects.all()
+            ser = TaskSerializer(tasks, many=True)
+            return Response(ser.data)
     elif request.method == 'POST':
         success = True
         filename = '../../protected/'

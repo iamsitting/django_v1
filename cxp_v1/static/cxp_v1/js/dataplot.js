@@ -1,7 +1,7 @@
 function getChart(fname, mlabel) {
 	$.ajax({
 		type: "GET",
-		url: "http://cxp.sytes.net/dataplot",
+		url: "http://cyclexpro.com/dataplot",
 		dataType: "json",
 		async: true,
 		data: {
