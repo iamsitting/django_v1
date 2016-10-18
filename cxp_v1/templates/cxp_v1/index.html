@@ -13,6 +13,7 @@
 		<!--[if lte IE 8]><script src="{% static 'cxp_v1/js/ie/html5shiv.js' %}"></script><![endif]-->
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="{% static 'cxp_v1/css/main.css' %}" />
+		<link rel="stylesheet" href="{% static 'cxp_v1/css/team.css' %}" />
 		<!--[if lte IE 9]><link rel="stylesheet" href="{% static 'cxp_v1/css/ie9.css' %}" /><![endif]-->
 	</head>
 	<body>
@@ -21,7 +22,7 @@
 			<section id="banner">
 				<h2><strong>Cycle X-Pro</strong>
 				<br>is the next generation cycling gear</h2>
-				<p>Brought to you by <strong>a group of Ags</strong></p>
+			<p>Brought to you by <strong>Team 14</strong></p>
 				<ul class="actions">
 					<li><a href="{% url 'dataplot' %}" class="button special">Get started</a></li>
 				</ul>
@@ -64,7 +65,45 @@
 			</section>
 
 		<!-- Two -->
-			<section id="two" class="wrapper style2 special">
+		<section id="two" class="wrapper style1 special">
+			<div class="inner">
+				<header>
+					<h2>Meet the Team</h2>
+					<p>TEAM 14</p>
+				</header>
+				<div class="flex flex-4">
+					<div class="box person">
+						<div class="image round">
+							<img src="{% static 'cxp_v1/images/prof.jpg' %}" alt="Person 1" />
+						</div>
+						<h3>Tyler Henderson</h3>
+						<p>Power/ALS</p>
+					</div>
+					<div class="box person">
+						<div class="image round">
+							<img src="{% static 'cxp_v1/images/prof.jpg' %}" alt="Person 2" />
+						</div>
+						<h3>Alejandro Pe&ntilde;aloza</h3>
+						<p>RTD/ADS</p>
+					</div>
+					<div class="box person">
+						<div class="image round">
+							<img src="{% static 'cxp_v1/images/prof.jpg' %}" alt="Person 3" />
+						</div>
+						<h3>Fernado Romo</h3>
+						<p>TRIO/PCB/MHU </p>
+					</div>
+					<div class="box person">
+						<div class="image round">
+							<img src="{% static 'cxp_v1/images/prof.jpg' %}" alt="Person 4" />
+						</div>
+						<h3>Carlos Salamanca</h3>
+						<p>Software</p>
+					</div>
+				</div>
+			</div>
+		</section>
+			<!--section id="two" class="wrapper style2 special">
 				<div class="inner narrow">
 					<header>
 						<h2>Get in touch</h2>
@@ -87,7 +126,7 @@
 						</ul>
 					</form>
 				</div>
-			</section>
+			</section-->
 
 		<!-- Three -->
 		<!--
@@ -498,7 +537,7 @@ print 'It took ' + i + ' iterations to sort the deck.';
 		<!-- Footer -->
 			<footer id="footer">
 				<div class="copyright">
-					&copy; Untitled. Design: <a href="http://templated.co/">TEMPLATED</a>.
+					&copy; Cycle X-Pro: <a href="http://templated.co/">TEMPLATED</a>.
 				</div>
 			</footer>
 
