@@ -6,9 +6,13 @@ This project contains the django server for the Cycle X-Pro project. For install
 
 ### Version
 
-3.1.2
+3.1.3
 
 ### Most recent changes
+
+3.1.3
+- UI fixes
+- Updated color scheme
 
 3.1.2
 - Fixed file upload
