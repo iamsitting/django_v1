@@ -58,7 +58,6 @@ def dataplot(request):
 
             debug('no data')
             context['filelist'] = file_list
-            debug(context)
             return render_to_response('cxp_v1/dataplot.html', context)
     debug('end view')
 
@@ -102,7 +101,6 @@ def sendFile(filename):
     response = HttpResponse(wrapper, content_type=ctype)
     response['Content-Length'] = os.path.getsize(path)
     response['Content-Disposition'] = "attachment; filename=%s"%filename
-    debug(response)
     return response
 
 #debug functions

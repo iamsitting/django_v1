@@ -5,3 +5,8 @@
 
 #secrets
 secrets.py
+
+#local files
+*.csv
+debug.txt
+
