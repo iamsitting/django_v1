@@ -9,7 +9,6 @@ from wsgiref.util import FileWrapper
 from django.conf import settings
 from rest_framework import status
 from rest_framework.decorators import api_view
-from sendfile import sendfile
 from .models import Download
 import urllib
 import os
@@ -36,26 +35,17 @@ def dataplot(request):
         debug(request.query_params)
         debug(len(request.query_params))
         if len(request.query_params) > 0:
-            debug(request.query_params['downloadFile'])
-
             #Getting CSV data to plot
-            if request.query_params['downloadFile'] == "no":
-                debug('yes data')
-                filename = request.query_params['filename']
-                metric = request.query_params['metric']
-                lab = getDataFromCSV(filename, 'time')
-                dat = getDataFromCSV(filename, metric)
-                context['stamps'] = lab
-                context['raw_data'] = dat
-                debug(context)
-                return JsonResponse(context)
-            else: #downloadFile yes
-                debug("download file")
-                debug(settings.SENDFILE_URL)
-                debug(settings.SENDFILE_ROOT)
-                return sendFile('10-13-2016-0.csv')
+            debug('yes data')
+            filename = request.query_params['filename']
+            metric = request.query_params['metric']
+            lab = getDataFromCSV(filename, 'time')
+            dat = getDataFromCSV(filename, metric)
+            context['stamps'] = lab
+            context['raw_data'] = dat
+            debug(context)
+            return JsonResponse(context)
         else:
-
             debug('no data')
             context['filelist'] = file_list
             return render_to_response('cxp_v1/dataplot.html', context)
@@ -64,6 +54,7 @@ def dataplot(request):
 
 def download(request, file_name):
     return sendFile(file_name)
+
 @csrf_protect
 def datasync(request):
     if request.method == 'POST':
@@ -91,7 +82,7 @@ def getDataFromCSV(fname, label, toFloat=False):
     return final_data
 
 def sendFile(filename):
-    path = "/home/ubuntu/Django/django_v1/protected/"+filename
+    path = settings.PROT_FILES+filename
     wrapper = FileWrapper(open(path))
     ctype, enc = mimetypes.guess_type(filename)
     if 'apk' in filename:

@@ -44,8 +44,6 @@
 				<div class="navbar-collapse collapse">
 					<ul class=" nav navbar-nav navbar-left">
 						<li><a href="/download/cxp.apk">Download</a></li>
-						<!--li><a href="{{ download.get_absolute_url }}">Download</a></li-->
-						
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu 1
 								<span class="caret">
@@ -63,8 +61,6 @@
 							</a>
 							<ul class="dropdown-menu">
 								{% for file in filelist %}
-									<!--li onclick="makeplot('{{file}}', 0, 'met2')"-->
-									<!--li onclick="makechart('{{file}}', 'met2')"-->
 									<li>
 									<a href="#speedTab" onclick="callGetChart('{{file}}', 'speed')">{{file}}</a>
 									</li>
@@ -91,8 +87,8 @@
 										<ul class="nav nav-tabs">
 											<!--TODO: Chnage updateChartargs to actual metric labels -->
 											<li class="active"><a href="#speedTab" onclick="updateChart('speed')" data-toggle="tab">Speed</a></li>
-											<li><a href="#distanceTab" onclick="updateChart('met1')" data-toggle="tab">Distance</a></li>
-											<li><a href="#caloriesTab" onclick="updateChart('met2')" data-toggle="tab">Calories</a></li>
+											<li><a href="#distanceTab" onclick="updateChart('distance')" data-toggle="tab">Distance</a></li>
+											<li><a href="#caloriesTab" onclick="updateChart('calories')" data-toggle="tab">Calories</a></li>
 										</ul>
 									</div>
 								</div>
@@ -118,8 +114,6 @@
 				</div-->
 			</div>
 		</div>
-		<!--script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script-->
-		<!--script type="text/javascript" src="{% static 'cxp_v1/js/Chart.min.js' %}"></script-->
 		<script type="text/javascript">
 			function updateChart(arg1){
 				var arg0 = $("#plot-title").text();
@@ -139,11 +133,6 @@
 			};
 		</script>
 
-		<script type="text/javascript">
-			function callDownloadAPK(){
-				downloadAPK();
-			};
-		</script>
 	</body>
 </html>
 

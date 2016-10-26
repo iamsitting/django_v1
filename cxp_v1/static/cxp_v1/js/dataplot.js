@@ -5,7 +5,6 @@ function getChart(fname, mlabel) {
 		dataType: "json",
 		async: true,
 		data: {
-			downloadFile: "no",
 			filename:fname,
 			metric: mlabel,
 		},
@@ -38,11 +37,11 @@ function makeChart(json_data, metric) {
 			canvasId = "#speedChart";
 			tabId = "#speedTab";
 			break;
-		case 'met1':
+		case 'distance':
 			canvasId = "#distanceChart";
 			tabId = "#distanceTab";
 			break;
-		case 'met2':
+		case 'calories':
 			canvasId = "#caloriesChart";
 			tabId = "#caloriesTab";
 			break;
