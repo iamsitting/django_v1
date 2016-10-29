@@ -39,6 +39,7 @@ def task_list(request):
     elif request.method == 'POST':
         path = "protected/"
         filename = request.data[0]["title"]
+        debug(request.data)
         sp = filename.split(PER)
         header = ','.join("{0}".format(k) for k in request.data[1].keys())
         content = header+NL
