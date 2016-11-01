@@ -6,9 +6,12 @@ This project contains the django server for the Cycle X-Pro project. For install
 
 ### Version
 
-3.1.5
+3.1.6
 
 ### Most recent changes
+
+3.1.6
+- Added delete function
 
 3.1.5
 - Updated metric labels on JS files

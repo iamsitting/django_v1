@@ -1,3 +1,19 @@
+function deleteData(fname){
+	$.ajax({
+		type: "DELETE",
+		url: "http://cyclexpro.com/download/"+fname,
+		dataType: "json",
+		async: true,
+		success: function(){
+			location.reload();
+		},
+		error: function(){
+			alert('File does not exist');
+		},
+
+	});
+}
+
 function getChart(fname, mlabel) {
 	$.ajax({
 		type: "GET",

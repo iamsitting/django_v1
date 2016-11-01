@@ -48,7 +48,7 @@
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu 1
 								<span class="caret">
 								</span>
-							</a>
+							</a> 
 							<ul class="dropdown-menu">
 								<li><a href="#">Sub 1</a></li>
 								<li><a href="#">Sub 2</a></li>
@@ -76,9 +76,13 @@
 				<div class="col-sm-12">
 					<div class="chart-wrapper">
 						<div  class="chart-title">
-							<a id="plot-title" href="#">
+							<a class="inline" id="plot-title" href="#">
 								No Plot Selected
 							</a>
+							&nbsp;
+							<button type="button" class="btn btn-danger" onclick="callConfirmation()">
+								Delete
+							</button>
 						</div>
 						<div class="chart-stage">
 							<div class="row">
@@ -131,6 +135,15 @@
 				$("#plot-title").attr("download", "download.csv");
 				getChart(arg0, arg1);
 			};
+		</script>
+		<script type="text/javascript">
+			function callConfirmation(){
+				var arg0 = $("#plot-title").text();
+				var dispStr = "Are you sure you want to delete "+arg0+" ?";
+				if(confirm(dispStr) == true){
+					deleteData(arg0);
+				}
+			}
 		</script>
 
 	</body>

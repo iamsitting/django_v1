@@ -23,7 +23,7 @@ import mimetypes
 def foo(request):
     return render(request, 'cxp_v1/index.html')
 
-@api_view(['GET'])
+@api_view(['GET',])
 def dataplot(request):
     path = "./protected/"
     file_list = []
@@ -49,11 +49,23 @@ def dataplot(request):
             debug('no data')
             context['filelist'] = file_list
             return render_to_response('cxp_v1/dataplot.html', context)
+
+
     debug('end view')
 
 
+@api_view(['GET', 'DELETE'])
 def download(request, file_name):
-    return sendFile(file_name)
+    if request.method == 'GET':
+        return sendFile(file_name)
+    elif request.method == 'DELETE':
+        debug('delete')
+        filename = "./protected/"+file_name
+        debug(filename)
+        os.remove(filename)
+        debug('deleted: '+filename)
+        return JsonResponse({'foo':'bar'})
+
 
 @csrf_protect
 def datasync(request):
