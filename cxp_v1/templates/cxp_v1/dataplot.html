@@ -139,9 +139,11 @@
 		<script type="text/javascript">
 			function callConfirmation(){
 				var arg0 = $("#plot-title").text();
-				var dispStr = "Are you sure you want to delete "+arg0+" ?";
-				if(confirm(dispStr) == true){
-					deleteData(arg0);
+				if (arg0 != "No Plot Selected"){
+					var dispStr = "Are you sure you want to delete "+arg0+" ?";
+					if(confirm(dispStr) == true){
+						deleteData(arg0);
+					}
 				}
 			}
 		</script>
